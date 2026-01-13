@@ -36,7 +36,7 @@ pipeline {
 
     post {
         success {
-            echo 'CI Pipeline Successful'
+            echo 'CI Pipeline Successful : congratulation🎉 you sucessfully launched the pipeline🥳' 
         }
         failure {
             echo 'CI Pipeline Failed'
