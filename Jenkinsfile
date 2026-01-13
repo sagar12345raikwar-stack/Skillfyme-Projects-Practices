@@ -39,7 +39,7 @@ pipeline {
             echo 'CI Pipeline Successful : congratulation🎉 you sucessfully launched the pipeline🥳' 
         }
         failure {
-            echo 'CI Pipeline Failed'
+            echo 'CI Pipeline Failed : ohh sorry goodluck for next time 👎'
         }
     }
 }
