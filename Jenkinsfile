@@ -9,7 +9,7 @@ pipeline {
                     branches: [[name: '*/master']],
                     userRemoteConfigs: [[
                         url: 'git@github.com:sagar12345raikwar-stack/Skillfyme-Projects-Practices.git',
-                        credentialsId: 'git' // use  SSH credential ID here
+                        credentialsId: 'jenkinskey' // use  SSH credential ID here
                     ]]
                 ])
             }
