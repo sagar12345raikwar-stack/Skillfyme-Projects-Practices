@@ -1,0 +1,35 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Build the Code
+        run: echo "Building application..."
+
+      - name: Test
+        run: echo "It is Testing part of our code..."
+
+      - name: Code Quality Check
+        run: echo "It is checking code quality..."
+
+      - name: CI Success Message
+        if: success()
+        run: echo "CI Pipeline Successful 🎉 you successfully launched the pipeline 🥳"
+
+      - name: CI Failure Message
+        if: failure()
+        run: echo "CI Pipeline Failed 😢 good luck for next time 👎"
+
