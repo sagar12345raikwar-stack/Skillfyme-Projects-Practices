@@ -13,11 +13,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
+      - name: Checkout-Code
         uses: actions/checkout@v4
 
-      - name: Build the Code
-        run: echo "Building application..."
+      - name: Build the Code here
+        run: echo "Building the  application..."
 
       - name: Test
         run: echo "It is Testing part of our code..."
