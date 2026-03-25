@@ -43,12 +43,12 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
 ## 🔹 Setup Jenkins Agents (Slaves)
 
-### Install Java on Agent:
+### Install Docker on Jenkins machine:
 
 ```bash
 sudo apt update
-sudo apt install openjdk-11-jdk -y
-```
+sudo apt install docker.io
+### Creating container :
 
 ### From Jenkins UI:
 
@@ -93,15 +93,6 @@ Matrix Authorization Strategy
 * Admin → Full access
 * Developer → Build permission
 * Auditor → Read-only
-
----
-
-## 🔒 IP Restriction (Firewall)
-
-```bash
-sudo ufw allow from <YOUR_IP> to any port 8080
-sudo ufw enable
-```
 
 ---
 
