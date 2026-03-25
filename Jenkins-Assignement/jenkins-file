@@ -1,0 +1,73 @@
+pipeline {
+    agent any
+
+    parameters {
+        string(name: 'BRANCH_NAME', defaultValue: 'master', description: 'Git branch')
+        booleanParam(name: 'FAIL_BUILD', defaultValue: false, description: 'Fail test?')
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                script {
+                    try {
+                        git branch: params.BRANCH_NAME, url: 'https://github.com/Sonal0409/myproject-13Sep-25-sonal.git'
+                    } catch (e) {
+                        echo "❌ Branch not found!"
+                        error("Stopping pipeline")
+                    }
+                }
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'echo "Building..."'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                script {
+                    retry(2) {
+                        if (params.FAIL_BUILD) {
+                            error("❌ Test failed")
+                        } else {
+                            echo "✅ Test passed"
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Deploy') {
+            when {
+                expression { currentBuild.currentResult == 'SUCCESS' }
+            }
+            steps {
+                sh 'echo "Deploying..."'
+            }
+        }
+    }
+
+    post {
+
+        success {
+            echo "✅ Build Success"
+            slackSend(
+                color: 'good',
+                message: "✅ SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}"
+            )
+            archiveArtifacts artifacts: '*.log', allowEmptyArchive: true
+        }
+
+        failure {
+            echo "❌ Build Failed"
+            slackSend(
+                color: 'danger',
+                message: "❌ FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER}"
+            )
+        }
+    }
+}

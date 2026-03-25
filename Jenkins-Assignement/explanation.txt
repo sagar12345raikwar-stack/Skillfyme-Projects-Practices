@@ -1,0 +1,26 @@
+🔧 Error Recovery Handling
+
+In this project, I implemented error recovery using Jenkins pipeline features.
+I used the retry mechanism to automatically rerun failed stages. This helps handle temporary issues like network errors or agent disconnection.
+
+If a build fails, Jenkins retries the process instead of stopping immediately. This improves the reliability of the pipeline. I also used basic checks to detect failures and ensure the pipeline continues smoothly.
+
+Additionally, I simulated agent reconnection, where the system reconnects automatically if the Jenkins agent gets disconnected during execution.
+
+🔐 Security Risks Mitigated
+
+To improve security, I implemented Role-Based Access Control (RBAC) in Jenkins.
+
+Different roles were created such as:
+
+Admin (full access)
+Developer (limited access)
+Viewer (read-only access)
+
+This ensures that only authorized users can modify jobs or configurations. It reduces the risk of unauthorized changes or misuse.
+
+I also ensured that sensitive operations like job execution and configuration changes are restricted to trusted users only.
+
+✅ Conclusion
+
+This project demonstrates a resilient Jenkins pipeline that can handle failures and ensure secure access. The use of retry mechanisms and RBAC improves both reliability and security in a CI/CD environment.
